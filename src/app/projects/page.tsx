@@ -1,144 +1,215 @@
 "use client"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Play, ExternalLink } from "lucide-react"
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
+import { ArrowLeft, ArrowUpRight, MonitorSmartphone } from "lucide-react"
+import Script from "next/script"
 
-const FADE_UP: any = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-}
+const VIDEOS = [
+  { id: "najbcpj6wx", title: "SaaS Expansion", industry: "B2B Tech", duration: "0:45" },
+  { id: "rd49wt8pnb", title: "Brand Identity", industry: "Apparel", duration: "1:02" },
+  { id: "4qf3snsng9", title: "Organic Growth", industry: "Consulting", duration: "0:30" },
+  { id: "ssx17xcxlq", title: "Scale Phase", industry: "Fintech", duration: "0:56" },
+  { id: "w5h2run0h0", title: "Local Domination", industry: "Real Estate", duration: "0:41" },
+];
 
-const STAGGER = {
-  visible: { transition: { staggerChildren: 0.1 } }
-}
+const WEBSITES = [
+  {
+    serial: "01",
+    title: "Winnerspin",
+    category: "Fintech SaaS / CRM",
+    desc: "An end-to-end CRM and customer portal to manage their entire financial operation. An enterprise-grade, custom SaaS infrastructure engineered for massive scalability.",
+    url: "winnerspin.in",
+    image: "/Ubuzz/ws.png"
+  },
+  {
+    serial: "02",
+    title: "Fitness 1 Studio",
+    category: "High-Conversion Landing Page",
+    desc: "A high-octane performance landing page engineered specifically for direct-response acquisition. Optimized for maximum aesthetic appeal and seamless visitor-to-lead throughput.",
+    url: "fitness1transformationstudio.com",
+    image: "/Ubuzz/ft.png"
+  }
+];
 
 export default function Projects() {
+  const [activeTab, setActiveTab] = useState<'video' | 'web'>('video');
+
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      {/* Header */}
-      <section className="pt-32 pb-16 px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-electric-blue/10 blur-[150px] rounded-full pointer-events-none" />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={STAGGER}>
-            <motion.h1 variants={FADE_UP} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-              Our <span className="text-gradient">Work</span>
-            </motion.h1>
-            <motion.p variants={FADE_UP} className="text-lg text-foreground-muted max-w-2xl mx-auto leading-relaxed">
-              Case studies and selected projects demonstrating our approach to creating high-converting, category-leading digital brands.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Web Development Projects */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 border-b border-glass-border pb-6 flex items-center gap-4">
-             <div className="w-10 h-10 rounded-full bg-electric-blue/20 flex items-center justify-center text-electric-cyan">
-                <ExternalLink className="w-5 h-5" />
-             </div>
-             <h2 className="text-3xl font-bold">Web Development & Design</h2>
-          </div>
-
-          <div className="space-y-32">
-             {/* Project 1 */}
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-glass border border-glass-border mb-6">
-                      <span className="text-xs font-semibold text-electric-cyan uppercase tracking-wider">Fintech</span>
-                   </div>
-                   <h3 className="text-4xl font-bold mb-4">PayFlow Dashboard</h3>
-                   <p className="text-foreground-muted text-lg mb-8 leading-relaxed">A complete overhaul of PayFlow's core web application. We focused on reducing friction in the payment funnel and introducing a modern, minimal UI.</p>
-                   
-                   <div className="grid grid-cols-3 gap-6 mb-8">
-                     <div>
-                        <h4 className="text-white font-bold mb-1">+150%</h4>
-                        <p className="text-sm text-foreground-muted">Conversion</p>
-                     </div>
-                     <div>
-                        <h4 className="text-white font-bold mb-1">-40%</h4>
-                        <p className="text-sm text-foreground-muted">Bounce Rate</p>
-                     </div>
-                     <div>
-                        <h4 className="text-white font-bold mb-1">0.8s</h4>
-                        <p className="text-sm text-foreground-muted">Load Time</p>
-                     </div>
-                   </div>
-
-                   <Button variant="outline" className="rounded-full">Read Case Study</Button>
-                </motion.div>
-                
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative aspect-[4/3] rounded-2xl glass-panel overflow-hidden border-glass-border group p-4">
-                   <div className="absolute inset-0 bg-navy-800" />
-                   <div className="relative w-full h-full rounded-xl bg-navy-950 border border-glass-border overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-105">
-                     <div className="h-8 border-b border-glass-border bg-navy-900 flex items-center px-4 gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full bg-glass" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-glass" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-glass" />
-                     </div>
-                     <div className="p-6">
-                        <div className="h-6 w-32 bg-glass rounded mb-8" />
-                        <div className="grid grid-cols-3 gap-4">
-                           <div className="h-24 bg-glass rounded col-span-2" />
-                           <div className="h-24 bg-glass rounded" />
-                        </div>
-                     </div>
-                   </div>
-                </motion.div>
-             </div>
+    <div className="bg-[#000000] min-h-screen text-white relative flex flex-col font-sans selection:bg-[#4361EE]/30 selection:text-white">
+      
+      {/* ═════════ HEADER AND NAVIGATION ═════════ */}
+      <div className="pt-32 pb-16 px-6 max-w-[1400px] mx-auto w-full relative z-10">
+        <Link href="/" className="inline-flex items-center gap-4 text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors mb-24 group">
+          <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform duration-300" /> Back to Index
+        </Link>
+        
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/[0.05] pb-8 gap-10">
+          <h1 className="text-[14vw] md:text-[8rem] font-[Plus_Jakarta_Sans] font-bold tracking-tighter leading-[0.85] text-white">
+            Works.
+          </h1>
+          
+          <div className="flex flex-col gap-3 font-[Plus_Jakarta_Sans]">
+            <button
+              onClick={() => setActiveTab('video')}
+              className={`text-left text-2xl md:text-3xl font-medium transition-colors duration-500 tracking-tight ${activeTab === 'video' ? 'text-white' : 'text-[#333333] hover:text-gray-400'}`}
+            >
+              Motion & Content
+            </button>
+            <button
+              onClick={() => setActiveTab('web')}
+              className={`text-left text-2xl md:text-3xl font-medium transition-colors duration-500 tracking-tight ${activeTab === 'web' ? 'text-white' : 'text-[#333333] hover:text-gray-400'}`}
+            >
+              Digital Platforms
+            </button>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Digital Marketing & Video */}
-      <section className="py-32 px-6 bg-navy-900/50 border-t border-glass-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 border-b border-glass-border pb-6 flex items-center gap-4">
-             <div className="w-10 h-10 rounded-full bg-electric-cyan/20 flex items-center justify-center text-electric-cyan">
-                <Play className="w-5 h-5 ml-1" />
-             </div>
-             <h2 className="text-3xl font-bold">Digital Marketing & Video</h2>
-          </div>
+      {/* ═════════ ACTIVE LAYOUT ═════════ */}
+      <div className="flex-grow max-w-[1400px] mx-auto px-6 w-full pb-40 relative z-10">
+        <AnimatePresence mode="wait">
+          
+          {/* MULTI-GRID VIDEO GALLERY */}
+          {activeTab === 'video' && (
+            <motion.div
+              key="video"
+              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -10, filter: "blur(4px)" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full relative"
+            >
+              <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
+              {VIDEOS.map((v) => (
+                <Script key={v.id} src={`https://fast.wistia.com/embed/${v.id}.js`} type="module" strategy="lazyOnload" />
+              ))}
+              
+              <div dangerouslySetInnerHTML={{ __html: `
+                <style>
+                  ${VIDEOS.map((v) => `
+                  wistia-player[media-id='${v.id}']:not(:defined) { 
+                    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${v.id}/swatch'); 
+                    display: block; 
+                    filter: blur(5px); 
+                    padding-top:177.78%; 
+                  }
+                  `).join('')}
+                </style>
+              `}} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {[
-                { title: "SaaS Launch VSL", client: "Nexus Data", result: "$200k+ ROAS" },
-                { title: "Organic TikTok Growth", client: "Aura Skincare", result: "3M+ Views" },
-                { title: "YouTube Authority Build", client: "Creator X", result: "+40k Subs" }
-             ].map((proj, i) => (
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mt-4">
+                {VIDEOS.map((v, i) => (
+                  <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.05 * i, duration: 0.6 }}
+                    key={i}
+                    className="relative group bg-[#050505] w-full aspect-[9/16] cursor-pointer rounded-[20px] overflow-hidden border border-white/[0.03] hover:border-white/[0.1] transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  >
+                    <div 
+                      dangerouslySetInnerHTML={{ __html: `<wistia-player media-id="${v.id}" aspect="0.5625" autoPlay="true" muted="true" loop="true" playbackRate="1.0" playButton="false" controlsVisibleOnLoad="false" settingsControl="false" fullscreenButton="false" playbar="false"></wistia-player>` }} 
+                      className="w-full h-full [&>wistia-player]:w-full [&>wistia-player]:h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-105 pointer-events-none z-0" 
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 z-10 pointer-events-none" />
+                    
+                    <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 flex flex-col justify-end pointer-events-none translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#4361EE] mb-1.5 font-bold drop-shadow-lg">{v.industry}</span>
+                      <h3 className="text-white text-[15px] font-bold tracking-tight drop-shadow-xl">{v.title}</h3>
+                    </div>
+
+                    <div className="absolute inset-0 border border-white/10 rounded-[20px] pointer-events-none z-30" />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* ASYMMETRICAL WEB PLATFORMS LAYOUT */}
+          {activeTab === 'web' && (
+            <motion.div
+              key="web"
+              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -10, filter: "blur(4px)" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col w-full"
+            >
+              <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
+              {WEBSITES.map(p => p.mediaId && (
+                <Script key={p.mediaId} src={`https://fast.wistia.com/embed/${p.mediaId}.js`} type="module" strategy="lazyOnload" />
+              ))}
+              
+              <div dangerouslySetInnerHTML={{ __html: `
+                <style>
+                  ${WEBSITES.filter(w => w.mediaId).map((p) => `
+                  wistia-player[media-id='${p.mediaId}']:not(:defined) { 
+                    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${p.mediaId}/swatch'); 
+                    display: block; 
+                    filter: blur(5px); 
+                    padding-top:56.25%; 
+                  }
+                  `).join('')}
+                </style>
+              `}} />
+
+              {WEBSITES.map((p, i) => (
                 <motion.div 
-                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                   key={i} className="group glass-panel rounded-2xl overflow-hidden cursor-pointer"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 * i, duration: 0.8 }}
+                  key={i} 
+                  className="group flex flex-col lg:flex-row items-stretch w-full border-b border-white/[0.05] last:border-0 py-16 gap-12 lg:gap-24"
                 >
-                   <div className="aspect-[9/16] relative bg-navy-800 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-electric-blue/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
-                      
-                      {/* Play Button Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                         <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center scale-90 group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-6 h-6 text-white ml-1" />
-                         </div>
+                  {/* Text Section */}
+                  <div className="w-full lg:w-4/12 flex flex-col justify-start">
+                    <span className="text-[10px] text-gray-500 font-mono mb-8 block">{p.serial} / {WEBSITES.length.toString().padStart(2, '0')}</span>
+                    <h2 className="text-3xl md:text-5xl font-[Plus_Jakarta_Sans] font-bold tracking-tight mb-8 text-white group-hover:text-[#4361EE] transition-colors duration-500 leading-tight">
+                      {p.title}
+                    </h2>
+                    <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-gray-400 mb-6 block border-l border-[#4361EE] pl-4">
+                      {p.category}
+                    </span>
+                    <p className="text-gray-500 text-sm leading-[1.8] max-w-sm font-light">
+                      {p.desc}
+                    </p>
+                    {p.url && (
+                    <a href={`https://${p.url}`} target="_blank" rel="noopener noreferrer" className="mt-12 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.15em] text-white group-hover:text-[#4361EE] transition-colors w-max cursor-pointer">
+                      View Platform <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                    )}
+                  </div>
+                  
+                  {/* Image/Mockup Section */}
+                  <div className="w-full lg:w-8/12 flex items-center justify-center lg:justify-end relative group-hover:border-white/[0.1] transition-colors duration-700 min-h-[300px] lg:min-h-auto rounded-[20px]">
+                    {p.image ? (
+                      <div className="w-full relative aspect-video rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.6)] border border-white/10 group-hover:border-white/20 transition-all duration-700">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={p.image} 
+                          alt={p.title} 
+                          className="w-full h-full object-cover scale-[1.02] transition-transform duration-1000 group-hover:scale-[1.05]" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
                       </div>
-
-                      <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-navy-900 via-navy-900/80 to-transparent">
-                         <p className="text-electric-cyan text-sm font-semibold mb-1">{proj.client}</p>
-                         <h3 className="text-xl font-bold mb-3">{proj.title}</h3>
-                         <div className="inline-flex items-center px-3 py-1 rounded bg-white/10 text-sm font-medium">
-                            Result: {proj.result}
-                         </div>
+                    ) : p.mediaId ? (
+                      <div className="w-full h-full bg-[#050505] lg:aspect-auto border border-white/[0.03] flex items-center justify-center relative overflow-hidden group-hover:border-white/[0.1] transition-colors duration-700 rounded-[20px] shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+                        <div 
+                          dangerouslySetInnerHTML={{ __html: `<wistia-player media-id="${p.mediaId}" autoPlay="true" muted="true" loop="true" playbackRate="1.0" playButton="false" controlsVisibleOnLoad="false" settingsControl="false" fullscreenButton="false" playbar="false"></wistia-player>` }} 
+                          className="w-full h-full [&>wistia-player]:w-full [&>wistia-player]:h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-[1.05] pointer-events-none z-0" 
+                        />
+                        <div className="absolute inset-0 border border-white/10 rounded-[20px] pointer-events-none z-30" />
                       </div>
-                   </div>
+                    ) : (
+                      <div className="w-full h-full bg-[#050505] lg:aspect-auto border border-white/[0.03] flex items-center justify-center relative overflow-hidden group-hover:border-white/[0.1] transition-colors duration-700 rounded-[20px] shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-[#4361EE]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
+                        <div className="text-[#333] font-mono text-[10px] tracking-widest uppercase flex flex-col items-center gap-3">
+                          <MonitorSmartphone size={24} className="opacity-50" strokeWidth={1} />
+                          Interface Assets Protected
+                        </div>
+                        <div className="absolute inset-0 border border-white/10 rounded-[20px] pointer-events-none z-30" />
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
-             ))}
-          </div>
-        </div>
-      </section>
+              ))}
+            </motion.div>
+          )}
 
-      {/* CTA */}
-      <section className="py-24 text-center px-6">
-         <h2 className="text-4xl font-bold mb-6">Let's create your next big win.</h2>
-         <Button size="lg" variant="gradient" className="rounded-full">Get Started</Button>
-      </section>
+        </AnimatePresence>
+      </div>
+
     </div>
   )
 }
