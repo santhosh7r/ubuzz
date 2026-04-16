@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const leaders = [
   { name: "ROWELL FITNESS", role: "1000+ Leads Generated", imgUrl: "/Tlogo/1.jpeg" },
-  { name: "SPORT UTILITY VEHICLES", role: "Digital Marketing", imgUrl: "/Tlogo/2.jpeg" },
+  { name: "MAHINDRA AUTOMOTIVE", role: "Digital Marketing", imgUrl: "/Tlogo/2.jpeg" },
   { name: "WINNERSPIN", role: "Web App Development + Digital Marketing", imgUrl: "/Tlogo/3.jpeg" },
   { name: "DR YOUR FITNESS", role: "350+ Leads Generated", imgUrl: "/Tlogo/4.jpeg" },
   { name: "VERNICA", role: "Digital Marketing", imgUrl: "/Tlogo/5.jpeg" },

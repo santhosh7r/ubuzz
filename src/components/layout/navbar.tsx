@@ -57,7 +57,7 @@ const NavBar = () => {
           {/* DESKTOP RIGHT — CTA */}
           <div className="hidden md:flex">
             <Link
-              href="https://cal.com/santhosh-perumal"
+              href="https://cal.com/ubuzz-in/30min"
               className="group inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full pr-5 pl-1.5 py-1.5 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(67,97,238,0.15)] backdrop-blur-md"
             >
               <div className="w-8 h-8 rounded-full bg-[#4361EE]/20 flex items-center justify-center text-[#4361EE] group-hover:bg-[#4361EE] group-hover:text-black transition-colors shrink-0">

@@ -12,13 +12,13 @@ export default function Hero() {
         className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-10"
       >
         <div className="flex -space-x-3">
-          {["/Tclient/1.jpeg", "/Tclient/2.jpeg", "/Tclient/3.jpeg", "/Tclient/4.jpeg"].map((imgSrc, i) => (
+          {["/Tlogo/1.jpeg", "/Tlogo/2.jpeg", "/Tlogo/3.jpeg", "/Tlogo/10.jpeg"].map((imgSrc, i) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img key={i} className="w-12 h-12 rounded-full border-2 border-black object-cover relative z-10" src={imgSrc} alt={`Founder ${i + 1}`} />
+            <img key={i} className="w-12 h-12 rounded-full border-2 border-black object-cover relative z-10" src={imgSrc} alt={`Brand ${i + 1}`} />
           ))}
         </div>
         <span className="text-sm sm:text-base text-gray-400 font-medium tracking-wide">
-          Trusted by <span className="text-white font-semibold">117+</span> founders who care about quality
+          Trusted by <span className="text-white font-semibold">117+</span> brands who care about quality
         </span>
       </motion.div>
 
