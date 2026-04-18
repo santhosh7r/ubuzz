@@ -6,14 +6,24 @@ import { ArrowLeft, ArrowUpRight, MonitorSmartphone } from "lucide-react"
 import Script from "next/script"
 
 const VIDEOS = [
-  { id: "najbcpj6wx", title: "SaaS Expansion", industry: "B2B Tech", duration: "0:45" },
-  { id: "rd49wt8pnb", title: "Brand Identity", industry: "Apparel", duration: "1:02" },
-  { id: "4qf3snsng9", title: "Organic Growth", industry: "Consulting", duration: "0:30" },
-  { id: "ssx17xcxlq", title: "Scale Phase", industry: "Fintech", duration: "0:56" },
-  { id: "w5h2run0h0", title: "Local Domination", industry: "Real Estate", duration: "0:41" },
+  { src: "https://res.cloudinary.com/dxzrqorub/video/upload/v1776533919/IMG_6853_uuwcx1.mp4", title: "SaaS Expansion", industry: "B2B Tech", duration: "0:45" },
+  { src: "https://res.cloudinary.com/dxzrqorub/video/upload/v1776533918/IMG_6852_hufz55.mp4", title: "Brand Identity", industry: "Apparel", duration: "1:02" },
+  { src: "https://res.cloudinary.com/dxzrqorub/video/upload/v1776533899/IMG_6851_pffz2h.mp4", title: "Organic Growth", industry: "Consulting", duration: "0:30" },
+  { src: "https://res.cloudinary.com/dxzrqorub/video/upload/v1776533887/IMG_6850_z07hrj.mp4", title: "Scale Phase", industry: "Fintech", duration: "0:56" },
+  { src: "https://res.cloudinary.com/dxzrqorub/video/upload/v1776533881/IMG_6849_f6flfc.mp4", title: "Local Domination", industry: "Real Estate", duration: "0:41" },
 ];
 
-const WEBSITES = [
+type Website = {
+  serial: string;
+  title: string;
+  category: string;
+  desc: string;
+  url?: string;
+  image?: string;
+  videoSrc?: string;
+};
+
+const WEBSITES: Website[] = [
   {
     serial: "01",
     title: "Winnerspin",
@@ -77,23 +87,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -10, filter: "blur(4px)" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="w-full relative"
             >
-              <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
-              {VIDEOS.map((v) => (
-                <Script key={v.id} src={`https://fast.wistia.com/embed/${v.id}.js`} type="module" strategy="lazyOnload" />
-              ))}
-              
-              <div dangerouslySetInnerHTML={{ __html: `
-                <style>
-                  ${VIDEOS.map((v) => `
-                  wistia-player[media-id='${v.id}']:not(:defined) { 
-                    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${v.id}/swatch'); 
-                    display: block; 
-                    filter: blur(5px); 
-                    padding-top:177.78%; 
-                  }
-                  `).join('')}
-                </style>
-              `}} />
+              {/* VIDEO PLAYER ASSETS REMOVED FOR NATIVE HTML5 */}
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mt-4">
                 {VIDEOS.map((v, i) => (
@@ -102,17 +96,17 @@ export default function Projects() {
                     key={i}
                     className="relative group bg-[#050505] w-full aspect-[9/16] cursor-pointer rounded-[20px] overflow-hidden border border-white/[0.03] hover:border-white/[0.1] transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                   >
-                    <div 
-                      dangerouslySetInnerHTML={{ __html: `<wistia-player media-id="${v.id}" aspect="0.5625" autoPlay="true" muted="true" loop="true" playbackRate="1.0" playButton="false" controlsVisibleOnLoad="false" settingsControl="false" fullscreenButton="false" playbar="false"></wistia-player>` }} 
-                      className="w-full h-full [&>wistia-player]:w-full [&>wistia-player]:h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-105 pointer-events-none z-0" 
+                    <video 
+                      src={v.src}
+                      className="w-full h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-105 pointer-events-none z-0" 
+                      autoPlay 
+                      muted 
+                      loop 
+                      playsInline 
+                      ref={el => { if (el) el.playbackRate = 1.25; }} 
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 z-10 pointer-events-none" />
-                    
-                    <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 flex flex-col justify-end pointer-events-none translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#4361EE] mb-1.5 font-bold drop-shadow-lg">{v.industry}</span>
-                      <h3 className="text-white text-[15px] font-bold tracking-tight drop-shadow-xl">{v.title}</h3>
-                    </div>
+
 
                     <div className="absolute inset-0 border border-white/10 rounded-[20px] pointer-events-none z-30" />
                   </motion.div>
@@ -128,23 +122,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -10, filter: "blur(4px)" }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col w-full"
             >
-              <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
-              {WEBSITES.map(p => p.mediaId && (
-                <Script key={p.mediaId} src={`https://fast.wistia.com/embed/${p.mediaId}.js`} type="module" strategy="lazyOnload" />
-              ))}
-              
-              <div dangerouslySetInnerHTML={{ __html: `
-                <style>
-                  ${WEBSITES.filter(w => w.mediaId).map((p) => `
-                  wistia-player[media-id='${p.mediaId}']:not(:defined) { 
-                    background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${p.mediaId}/swatch'); 
-                    display: block; 
-                    filter: blur(5px); 
-                    padding-top:56.25%; 
-                  }
-                  `).join('')}
-                </style>
-              `}} />
+              {/* VIDEO PLAYER ASSETS REMOVED FOR NATIVE HTML5 */}
 
               {WEBSITES.map((p, i) => (
                 <motion.div 
@@ -183,11 +161,16 @@ export default function Projects() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
                       </div>
-                    ) : p.mediaId ? (
+                    ) : p.videoSrc ? (
                       <div className="w-full h-full bg-[#050505] lg:aspect-auto border border-white/[0.03] flex items-center justify-center relative overflow-hidden group-hover:border-white/[0.1] transition-colors duration-700 rounded-[20px] shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-                        <div 
-                          dangerouslySetInnerHTML={{ __html: `<wistia-player media-id="${p.mediaId}" autoPlay="true" muted="true" loop="true" playbackRate="1.0" playButton="false" controlsVisibleOnLoad="false" settingsControl="false" fullscreenButton="false" playbar="false"></wistia-player>` }} 
-                          className="w-full h-full [&>wistia-player]:w-full [&>wistia-player]:h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-[1.05] pointer-events-none z-0" 
+                        <video 
+                          src={p.videoSrc}
+                          className="w-full h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-[1.05] pointer-events-none z-0" 
+                          autoPlay 
+                          muted 
+                          loop 
+                          playsInline 
+                          ref={el => { if (el) el.playbackRate = 1.25; }} 
                         />
                         <div className="absolute inset-0 border border-white/10 rounded-[20px] pointer-events-none z-30" />
                       </div>

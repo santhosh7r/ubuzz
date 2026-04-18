@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import Script from 'next/script';
 
 export const ACTUAL_VIDEOS = [
-  { type: 'wistia', id: 'najbcpj6wx' },
-  { type: 'wistia', id: 'rd49wt8pnb' },
-  { type: 'wistia', id: '4qf3snsng9' },
-  { type: 'wistia', id: 'ssx17xcxlq' },
-  { type: 'wistia', id: 'w5h2run0h0' },
+  { src: 'https://res.cloudinary.com/dxzrqorub/video/upload/v1776533919/IMG_6853_uuwcx1.mp4' },
+  { src: 'https://res.cloudinary.com/dxzrqorub/video/upload/v1776533918/IMG_6852_hufz55.mp4' },
+  { src: 'https://res.cloudinary.com/dxzrqorub/video/upload/v1776533899/IMG_6851_pffz2h.mp4' },
+  { src: 'https://res.cloudinary.com/dxzrqorub/video/upload/v1776533887/IMG_6850_z07hrj.mp4' },
+  { src: 'https://res.cloudinary.com/dxzrqorub/video/upload/v1776533881/IMG_6849_f6flfc.mp4' },
 ];
 
 const VideoCarousel = () => {
@@ -31,14 +31,19 @@ const VideoCarousel = () => {
             className="relative group w-[220px] md:w-[320px] lg:w-[360px] aspect-[9/16] bg-[#050505] overflow-hidden rounded-[2rem] border border-white/10 hover:border-white/30 transition-colors duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)] flex-shrink-0 pointer-events-none"
           >
             {/* Raw Video Injection - Autoplaying, 1.5x Speed, No Controls */}
-            {v.type === 'wistia' ? (
-              <div 
-                dangerouslySetInnerHTML={{ __html: `<wistia-player media-id="${v.id}" aspect="0.5625" autoPlay="true" muted="true" loop="true" playbackRate="1.5" playButton="false" controlsVisibleOnLoad="false" settingsControl="false" fullscreenButton="false" playbar="false"></wistia-player>` }} 
-                className="w-full h-full [&>wistia-player]:w-full [&>wistia-player]:h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-105 pointer-events-none" 
+            {v.src ? (
+              <video 
+                src={v.src}
+                className="w-full h-full object-cover scale-[1.02] transition-transform duration-700 group-hover:scale-105 pointer-events-none" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                ref={el => { if (el) el.playbackRate = 1.5; }} 
               />
             ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center bg-white/[0.02]">
-                  <span className="text-white/20 text-xs font-bold uppercase tracking-widest">Placeholder 0{v.id}</span>
+                  <span className="text-white/20 text-xs font-bold uppercase tracking-widest">Placeholder</span>
                 </div>
             )}
 
@@ -65,22 +70,7 @@ export default function VideoCarouselSection() {
         </div>
       </div>
 
-      <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
-      {ACTUAL_VIDEOS.map(v => (
-        <Script key={v.id} src={`https://fast.wistia.com/embed/${v.id}.js`} type="module" strategy="lazyOnload" />
-      ))}
-      <div dangerouslySetInnerHTML={{ __html: `
-        <style>
-          ${ACTUAL_VIDEOS.map(v => `
-          wistia-player[media-id='${v.id}']:not(:defined) { 
-            background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${v.id}/swatch'); 
-            display: block; 
-            filter: blur(5px); 
-            padding-top:177.78%; 
-          }
-          `).join('')}
-        </style>
-      `}} />
+      {/* VIDEO PLAYER ASSETS REMOVED FOR NATIVE HTML5 */}
 
       {/* Carousel Injection (Replaces Grid) */}
       <VideoCarousel />
