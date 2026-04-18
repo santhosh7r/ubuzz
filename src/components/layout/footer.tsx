@@ -45,9 +45,8 @@ export function Footer() {
           <div className="flex flex-wrap gap-12 md:gap-24">
             <div className="flex flex-col gap-4">
               <h4 className="text-white uppercase tracking-widest text-[#4361EE] font-bold text-[10px] mb-2">Socials</h4>
-              <Link href="#" className="hover:text-white hover:translate-x-1 transition-transform">Instagram</Link>
-              <Link href="#" className="hover:text-white hover:translate-x-1 transition-transform">LinkedIn</Link>
-              <Link href="#" className="hover:text-white hover:translate-x-1 transition-transform">Twitter</Link>
+              <Link href="https://www.instagram.com/ubuzz.in?igsh=NWM5YW41NTdkeW43" target="_blank" className="hover:text-white hover:translate-x-1 transition-transform">Instagram</Link>
+              <Link href="https://www.linkedin.com/company/ubuzz-in/" target="_blank" className="hover:text-white hover:translate-x-1 transition-transform">LinkedIn</Link>
             </div>
 
             <div className="flex flex-col gap-4">
